@@ -25,10 +25,32 @@ Team-based implementation skills for Claude Code, extending [obra/superpowers](h
 npx skills add wjaszczuk/agent-team-skills -g
 ```
 
+This installs each skill separately into `~/.agents/skills/`:
+
+```
+~/.agents/skills/team-brainstorming
+~/.agents/skills/team-plan
+~/.agents/skills/team-execute
+~/.agents/skills/team-developer
+~/.agents/skills/team-architect
+```
+
 Or from local clone:
 
 ```bash
-npx skills add ~/Projects/agent-team-skills -g
+npx skills add /path/to/agent-team-skills -g
+```
+
+### Update
+
+```bash
+npx skills update -g
+```
+
+### Uninstall
+
+```bash
+npx skills remove team-brainstorming team-plan team-execute team-developer team-architect -g -y
 ```
 
 ## Usage
