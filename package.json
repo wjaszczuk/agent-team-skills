@@ -4,6 +4,7 @@
   "description": "Team-based implementation skills extending obra/superpowers",
   "keywords": ["skills", "claude", "agents", "team"],
   "skills": [
+    "team-brainstorming",
     "team-plan",
     "team-execute",
     "team-developer",
