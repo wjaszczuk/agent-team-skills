@@ -1,6 +1,6 @@
 {
   "name": "agent-team-skills",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Team-based implementation skills extending obra/superpowers",
   "keywords": ["skills", "claude", "agents", "team"],
   "skills": [
