@@ -13,6 +13,7 @@ Team-based implementation skills for Claude Code, extending [obra/superpowers](h
 
 | Skill | Purpose |
 |-------|---------|
+| `team-brainstorming` | Design a feature (wraps obra `brainstorming`, hands off to `team-plan`) |
 | `team-plan` | Write implementation plan with state tracking (wraps obra `writing-plans`) |
 | `team-execute` | Orchestrate Developer + Architect agents per task |
 | `team-developer` | Developer+Tester agent: TDD, commit, push |
@@ -32,14 +33,18 @@ npx skills add ~/Projects/agent-team-skills -g
 
 ## Usage
 
-### 1. Write a plan
+### 1. Brainstorm and design
 
-Start with `team-plan` to create an implementation plan. It delegates to obra `writing-plans` and adds:
+Start with `team-brainstorming`. It runs obra `brainstorming` (clarifying questions, design approval, design doc) and then automatically hands off to `team-plan` instead of obra `writing-plans`.
+
+### 2. Write a plan (standalone)
+
+If you already have a design, use `team-plan` directly. It delegates to obra `writing-plans` and adds:
 - `## Progress` checkboxes
 - Resume header pointing to `.state.json`
 - Initial `.state.json` with all tasks at `pending`
 
-### 2. Execute the plan
+### 3. Execute the plan
 
 Use `team-execute` to start. It will:
 1. Display a **resume prompt** — save this to resume after interruption
@@ -47,11 +52,11 @@ Use `team-execute` to start. It will:
 3. Push commits to remote after each approved task
 4. Show progress checklist after each status change
 
-### 3. Resume after interruption
+### 4. Resume after interruption
 
 If your session is interrupted, start a new session and paste the resume prompt displayed at the start. The orchestrator reads `.state.json` and skips completed tasks.
 
-### 4. Cleanup
+### 5. Cleanup
 
 When all tasks are done, `team-execute` automatically:
 - Deletes `.state.json`
@@ -67,6 +72,10 @@ When all tasks are done, `team-execute` automatically:
 ## Architecture
 
 ```
+team-brainstorming
+  └── delegates to: obra/brainstorming
+  └── replaces final step: obra/writing-plans → team-plan
+
 team-plan
   └── delegates to: obra/writing-plans
   └── adds: ## Progress, .state.json
